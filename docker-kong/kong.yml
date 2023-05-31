@@ -1,0 +1,27 @@
+_format_version: "2.1"
+
+services:
+  - name: golang-kong-service
+    url: http://golang-kong:8050
+    routes:
+      - name: golang-route
+        paths:
+          - /golang
+  - name: eleicao-kong-service
+    url: http://eleicao-kong:8040
+    routes:
+      - name: eleicao-route
+        paths:
+          - /eleicao
+  - name: agendamento-kong-service
+    url: http://agendamento-kong:8030
+    routes:
+      - name: agendamento-route
+        paths:
+          - /agendamento
+  - name: insurance-kong-service
+    url: http://insurance-kong:8060
+    routes:
+      - name: insurance-route
+        paths:
+          - /insurance
