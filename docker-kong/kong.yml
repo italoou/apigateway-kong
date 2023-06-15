@@ -1,27 +1,73 @@
 _format_version: "2.1"
 
 services:
-  - name: golang-kong-service
-    url: http://golang-kong:8050
-    routes:
-      - name: golang-route
-        paths:
-          - /golang
-  - name: eleicao-kong-service
-    url: http://eleicao-kong:8040
-    routes:
-      - name: eleicao-route
-        paths:
-          - /eleicao
-  - name: agendamento-kong-service
-    url: http://agendamento-kong:8030
-    routes:
-      - name: agendamento-route
-        paths:
-          - /agendamento
-  - name: insurance-kong-service
-    url: http://insurance-kong:8060
+  - name: ms-insurance-api
+    url: http://ms-insurance-api:7001
     routes:
       - name: insurance-route
         paths:
           - /insurance
+  - name: ms-loan-api
+    url: http://ms-loan-api:7002
+    routes:
+      - name: loan-route
+        paths:
+          - /emprestimo
+  - name: ms-realstate-financing-api
+    url: http://ms-realstate-financing-api:7003
+    routes:
+      - name: realstate-financing-route
+        paths:
+          - /financiamento
+  - name: vasco-bank-autenticacao-api
+    url: http://vasco-bank-autenticacao-api:7004
+    routes:
+      - name: autenticacao-route
+        paths:
+          - /autenticacao
+  - name: user-service-api
+    url: http://user-service-api:7005
+    routes:
+      - name: user-route
+        paths:
+          - /usuario
+  - name: investiment-service-api
+    url: http://investiment-service-api:7006
+    routes:
+      - name: investiment-route
+        paths:
+          - /investimento
+  - name: vasco-bank-conta-api
+    url: http://vasco-bank-conta-api:7007
+    routes:
+      - name: conta-route
+        paths:
+          - /conta
+  - name: vasco-bank-cartao-api
+    url: http://vasco-bank-cartao-api:7008
+    routes:
+      - name: cartao-route
+        paths:
+          - /cartao
+  - name: vasco-bank-pagamento-api
+    url: http://vasco-bank-pagamento-api:7007
+    routes:
+      - name: conta-route
+        paths:
+          - /pagamento
+
+plugins:
+  - name: jwt
+    route: insurance-route
+    enabled: true
+    config: 
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+
+consumers:
+  - username: loginserverissuer
+jwt_secrets:
+  - consumer: loginserverissuer
+    algorithm: HS512
+    secret: "T0xIQSBTTyBWT0NFIFFVRSBjb2lzYSBtYWlzIGxlZ2FsIHNlZ3VyYXIgZXNzYSBiYXJyYSBxdWUggiBnb3N0YWRlIHZjISEhISE="

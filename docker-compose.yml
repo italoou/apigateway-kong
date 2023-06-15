@@ -7,54 +7,6 @@ networks:
    
 
 services:
-  agendamento-kong:
-    container_name: agendamento-kong
-    image: agendamento-kong-image
-    build: services/portal-agendamento-backend/.
-    networks:
-      - kong-net
-    ports:
-      - 8030:8030
-    depends_on:
-      - postgres-kong
-
-  postgres-kong:
-    container_name: postgres-kong
-    image: postgres:15.2
-    restart: unless-stopped
-    ports: 
-      - 15432:5432
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: portalAgendamento
-    volumes:
-      - postgres_kong_data:/var/lib/postgresql/data
-    networks:
-      - kong-net
-
-  eleicao-kong:
-    container_name: eleicao-kong
-    image: tre-eleicao-kong-image
-    build: services/election-api-eric-italo/.
-    networks:
-      - kong-net
-    ports:
-      - 8040:8040
-    depends_on:
-      - mysql-kong
-
-  mysql-kong:
-    container_name: mysql-kong
-    image: mysql:8.0
-    restart: unless-stopped
-    ports: 
-      - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: tre-rn
-    networks:
-      - kong-net
-
   golang-kong:
     container_name: golang-kong
     image: golang-kong-image
@@ -71,7 +23,4 @@ services:
     networks:
       - kong-net
     ports:
-      - 8060:8060
-
-volumes:
-  postgres_kong_data:
+      - 8043:8043
