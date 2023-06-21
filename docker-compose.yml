@@ -7,20 +7,11 @@ networks:
    
 
 services:
-  golang-kong:
-    container_name: golang-kong
-    image: golang-kong-image
-    build: services/golang-api/.
-    networks:
-      - kong-net
-    ports:
-      - 8050:8050
-
   insurance-kong:
-    container_name: insurance-kong
-    image: insurance-kong-image
+    container_name: ms-insurance-api
+    image: ms-insurance-api
     build: ../ms-insurance/.
     networks:
       - kong-net
     ports:
-      - 8043:8043
+      - 7001:7001

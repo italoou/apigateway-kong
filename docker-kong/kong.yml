@@ -1,6 +1,13 @@
 _format_version: "2.1"
 
 services:
+  - name: portal-agendamento
+    url: http://portal-agendamento:8030
+    routes:
+      - name: portal-agendamento-route
+        paths:
+          - /agendamento
+
   - name: ms-insurance-api
     url: http://ms-insurance-api:7001
     routes:
@@ -64,10 +71,34 @@ plugins:
       key_claim_name: kid
       claims_to_verify: 
         - exp
+      secret_is_base64: true
+
+  - name: jwt
+    service: portal-agendamento
+    enabled: true
+    config: 
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+      secret_is_base64: true
+  
+  - name: request-transformer
+    service: portal-agendamento
+    consumer: loginserverissuer
+    config:
+      remove:
+        headers:
+          - authorization
+      add:
+        headers:
+          - "x-user-id:$('headers.authorization['sub']()')"
+      
 
 consumers:
   - username: loginserverissuer
+    custom_id: "123456"
+
 jwt_secrets:
   - consumer: loginserverissuer
     algorithm: HS512
-    secret: "T0xIQSBTTyBWT0NFIFFVRSBjb2lzYSBtYWlzIGxlZ2FsIHNlZ3VyYXIgZXNzYSBiYXJyYSBxdWUggiBnb3N0YWRlIHZjISEhISE="
+    secret: T0xIQSBTTyBWT0NFIFFVRSBjb2lzYSBtYWlzIGxlZ2FsIHNlZ3VyYXIgZXNzYSBiYXJyYSBxdWUggiBnb3N0YWRlIHZjISEhISE=
