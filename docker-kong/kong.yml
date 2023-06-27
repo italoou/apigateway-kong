@@ -7,7 +7,6 @@ services:
       - name: portal-agendamento-route
         paths:
           - /agendamento
-
   - name: ms-insurance-api
     url: http://ms-insurance-api:7001
     routes:
@@ -59,7 +58,7 @@ services:
   - name: vasco-bank-pagamento-api
     url: http://vasco-bank-pagamento-api:7007
     routes:
-      - name: conta-route
+      - name: pagamento-route
         paths:
           - /pagamento
 
@@ -74,25 +73,85 @@ plugins:
       secret_is_base64: true
 
   - name: jwt
-    service: portal-agendamento
+    route: loan-route
     enabled: true
     config: 
       key_claim_name: kid
       claims_to_verify: 
         - exp
       secret_is_base64: true
-  
-  - name: request-transformer
+
+  - name: jwt
+    route: realstate-financing-route
+    enabled: true
+    config: 
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+      secret_is_base64: true
+
+  - name: jwt
+    route: autenticacao-route
+    enabled: true
+    config: 
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+      secret_is_base64: true
+
+  - name: jwt
+    route: user-route
+    enabled: true
+    config: 
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+      secret_is_base64: true
+
+  - name: jwt
+    route: investiment-route
+    enabled: true
+    config: 
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+      secret_is_base64: true
+
+  - name: jwt
+    route: conta-route
+    enabled: true
+    config: 
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+      secret_is_base64: true
+
+  - name: jwt
+    route: cartao-route
+    enabled: true
+    config: 
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+      secret_is_base64: true
+
+  - name: jwt
+    route: pagamento-route
+    enabled: true
+    config: 
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+      secret_is_base64: true
+
+  - name: jwt
     service: portal-agendamento
-    consumer: loginserverissuer
-    config:
-      remove:
-        headers:
-          - authorization
-      add:
-        headers:
-          - "x-user-id:$('headers.authorization['sub']()')"
-      
+    enabled: true
+    config: 
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+      secret_is_base64: true   
 
 consumers:
   - username: loginserverissuer
