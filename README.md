@@ -2,9 +2,13 @@
 
 Este repositório tem como objetivo implementar um api gateway utilizando o kong para o sistema Vasco Bank, uma aplicação desenvolvida utilizando a arquitetura de microserviços para a disciplina de TÓPICOS ESPECIAIS EM SISTEMAS DE INFORMAÇÃO DE GESTÃO A (Arquitetura de Microsserviços)
 
+Autor do projeto: ***Italo Lima*** 
+
+Github: *@italoou*
+
 ## Identificador de Autenticação
 
-    Ao subir o kong, será gerado um identificador para autenticação que pode ser obtido através da requisição para a rota da api, exposta na porta 8001, /consumers/loginserverissuer/jwt, o valor em data.key deve ser adicionado ao header do token jwt com sua chave "kid".
+Ao subir o kong, será gerado um identificador para autenticação que pode ser obtido através da requisição para a rota da api, exposta na porta 8001, `/consumers/loginserverissuer/jwt`, o valor em data.key deve ser adicionado ao header do token jwt com sua chave "kid".
 
 ## Produção (configuração com autenticação)
 
@@ -13,8 +17,6 @@ Este repositório tem como objetivo implementar um api gateway utilizando o kong
 >> cd kong-production
 
 >> docker-compose up
-
-    
 
 ## Desenvolvimento (configuração sem autenticação)
 
@@ -46,3 +48,4 @@ Caso deseje, a configuração com autenticação poderá ser ativada apenas por 
 |Conta|/conta|7007|vasco-bank-conta|
 |Cartão|/cartao|7008|vasco-bank-cartao|
 |Pagamento|/pagamento|7009|vasco-bank-pagamento|
+
