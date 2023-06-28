@@ -1,18 +1,12 @@
 _format_version: "2.1"
 
 services:
-  - name: portal-agendamento
-    url: http://portal-agendamento:8030
-    routes:
-      - name: portal-agendamento-route
-        paths:
-          - /agendamento
   - name: ms-insurance-api
     url: http://ms-insurance-api:7001
     routes:
       - name: insurance-route
         paths:
-          - /insurance
+          - /seguro
   - name: ms-loan-api
     url: http://ms-loan-api:7002
     routes:
@@ -56,7 +50,7 @@ services:
         paths:
           - /cartao
   - name: vasco-bank-pagamento-api
-    url: http://vasco-bank-pagamento-api:7007
+    url: http://vasco-bank-pagamento-api:7009
     routes:
       - name: pagamento-route
         paths:
@@ -83,15 +77,6 @@ plugins:
 
   - name: jwt
     route: realstate-financing-route
-    enabled: true
-    config: 
-      key_claim_name: kid
-      claims_to_verify: 
-        - exp
-      secret_is_base64: true
-
-  - name: jwt
-    route: autenticacao-route
     enabled: true
     config: 
       key_claim_name: kid
@@ -142,20 +127,11 @@ plugins:
       key_claim_name: kid
       claims_to_verify: 
         - exp
-      secret_is_base64: true
-
-  - name: jwt
-    service: portal-agendamento
-    enabled: true
-    config: 
-      key_claim_name: kid
-      claims_to_verify: 
-        - exp
-      secret_is_base64: true   
+      secret_is_base64: true  
 
 consumers:
   - username: loginserverissuer
-    custom_id: "123456"
+    custom_id: "98653249"
 
 jwt_secrets:
   - consumer: loginserverissuer

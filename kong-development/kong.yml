@@ -1,0 +1,148 @@
+_format_version: "2.1"
+
+services:
+  - name: ms-insurance-api
+    url: http://ms-insurance-api:7001
+    routes:
+      - name: insurance-route
+        paths:
+          - /seguro
+  - name: ms-loan-api
+    url: http://ms-loan-api:7002
+    routes:
+      - name: loan-route
+        paths:
+          - /emprestimo
+  - name: ms-realstate-financing-api
+    url: http://ms-realstate-financing-api:7003
+    routes:
+      - name: realstate-financing-route
+        paths:
+          - /financiamento
+  - name: vasco-bank-autenticacao-api
+    url: http://vasco-bank-autenticacao-api:7004
+    routes:
+      - name: autenticacao-route
+        paths:
+          - /autenticacao
+  - name: user-service-api
+    url: http://user-service-api:7005
+    routes:
+      - name: user-route
+        paths:
+          - /usuario
+  - name: investiment-service-api
+    url: http://investiment-service-api:7006
+    routes:
+      - name: investiment-route
+        paths:
+          - /investimento
+  - name: vasco-bank-conta-api
+    url: http://vasco-bank-conta-api:7007
+    routes:
+      - name: conta-route
+        paths:
+          - /conta
+  - name: vasco-bank-cartao-api
+    url: http://vasco-bank-cartao-api:7008
+    routes:
+      - name: cartao-route
+        paths:
+          - /cartao
+  - name: vasco-bank-pagamento-api
+    url: http://vasco-bank-pagamento-api:7009
+    routes:
+      - name: pagamento-route
+        paths:
+          - /pagamento
+
+# plugins:
+#   - name: jwt
+#     route: insurance-route
+#     enabled: true
+#     config: 
+#       key_claim_name: kid
+#       claims_to_verify: 
+#         - exp
+#       secret_is_base64: true
+
+#   - name: jwt
+#     route: loan-route
+#     enabled: true
+#     config: 
+#       key_claim_name: kid
+#       claims_to_verify: 
+#         - exp
+#       secret_is_base64: true
+
+#   - name: jwt
+#     route: realstate-financing-route
+#     enabled: true
+#     config: 
+#       key_claim_name: kid
+#       claims_to_verify: 
+#         - exp
+#       secret_is_base64: true
+
+#   - name: jwt
+#     route: user-route
+#     enabled: true
+#     config: 
+#       key_claim_name: kid
+#       claims_to_verify: 
+#         - exp
+#       secret_is_base64: true
+
+#   - name: jwt
+#     route: investiment-route
+#     enabled: true
+#     config: 
+#       key_claim_name: kid
+#       claims_to_verify: 
+#         - exp
+#       secret_is_base64: true
+
+#   - name: jwt
+#     route: conta-route
+#     enabled: true
+#     config: 
+#       key_claim_name: kid
+#       claims_to_verify: 
+#         - exp
+#       secret_is_base64: true
+
+#   - name: jwt
+#     route: cartao-route
+#     enabled: true
+#     config: 
+#       key_claim_name: kid
+#       claims_to_verify: 
+#         - exp
+#       secret_is_base64: true
+
+#   - name: jwt
+#     route: pagamento-route
+#     enabled: true
+#     config: 
+#       key_claim_name: kid
+#       claims_to_verify: 
+#         - exp
+#       secret_is_base64: true
+
+#   - name: jwt
+#     service: portal-agendamento
+#     enabled: true
+#     config: 
+#       key_claim_name: kid
+#       claims_to_verify: 
+#         - exp
+#       secret_is_base64: true   
+
+# consumers:
+#   - username: loginserverissuer
+#     custom_id: "12345678"
+
+# jwt_secrets:
+#   - consumer: loginserverissuer
+#     algorithm: HS512
+#     secret: T0xIQSBTTyBWT0NFIFFVRSBjb2lzYSBtYWlzIGxlZ2FsIHNlZ3VyYXIgZXNzYSBiYXJyYSBxdWUggiBnb3N0YWRlIHZjISEhISE=
