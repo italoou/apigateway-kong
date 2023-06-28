@@ -1,38 +1,38 @@
 # Kong Api Gateway 
 
-Este repositório tem como objetivo implementar um api gateway utilizando o kong para o sistema Vasco Bank, uma aplicação desenvolvida utilizando a arquitetura de microserviços para a disciplina de TÓPICOS ESPECIAIS EM SISTEMAS DE INFORMAÇÃO DE GESTÃO A (Arquitetura de Microsserviços)
+Este repositório tem como objetivo implementar um API Gateway utilizando o Kong para o sistema Vasco Bank, uma aplicação desenvolvida utilizando a arquitetura de microsserviços para a disciplina de TÓPICOS ESPECIAIS EM SISTEMAS DE INFORMAÇÃO DE GESTÃO A (Arquitetura de Microsserviços).
 
-Autor do projeto: ***Italo Lima*** 
+Autor do projeto: Italo Lima
 
-Github: *@italoou*
+Github: @italoou
 
 ## Identificador de Autenticação
 
-Ao subir o kong, será gerado um identificador para autenticação que pode ser obtido através da requisição para a rota da api, exposta na porta 8001, `/consumers/loginserverissuer/jwt`, o valor em data.key deve ser adicionado ao header do token jwt com sua chave "kid".
+Ao subir o Kong, será gerado um identificador para autenticação que pode ser obtido através da requisição para a rota da API, exposta na porta 8001: /consumers/loginserverissuer/jwt. O valor em data.key deve ser adicionado ao header do token JWT com sua chave "kid".
 
 ## Produção (configuração com autenticação)
 
->> cd apigateway-kong
-
->> cd kong-production
-
->> docker-compose up
-
+```bash
+cd apigateway-kong
+cd kong-production
+docker-compose up
+```
 ## Desenvolvimento (configuração sem autenticação)
 
-No diretório apigateway-kong se encontra um arquivo yml com um exemplo para o docker compose dos serviços com a porta padrão definida para eles e a rede kong-net, necessária para que o gateway redirecione para os serviços
+No diretório apigateway-kong, encontra-se um arquivo YAML com um exemplo para o Docker Compose dos serviços, com a porta padrão definida para eles e a rede kong-net, necessária para que o Gateway redirecione para os serviços.
 
-No diretório kong-development terá o arquivo docker-compose.yml e o arquivo kong.yml, nele está a configuração do api gateway com uma configuração padrão para acessar os serviços, mudanças nos nomes dos containers ou portas dos serviços precisarão ser atualizadas nesse arquivo.
+No diretório kong-development, você encontrará o arquivo docker-compose.yml e o arquivo kong.yml. Nele está a configuração do API Gateway com uma configuração padrão para acessar os serviços. Mudanças nos nomes dos containers ou portas dos serviços precisarão ser atualizadas nesse arquivo.
 
->> cd apigateway-kong
 
->> cd kong-development 
+```bash
+cd apigateway-kong
+cd kong-development 
+docker-compose up
+```
 
->> docker-compose up
+Após executar o comando, os serviços estarão disponíveis para acesso na porta 8002. Caso deseje, essa porta poderá ser modificada no arquivo docker-compose.yml. As rotas de acesso aos serviços podem ser consultadas na tabela em anexo.
 
-Após executado o comando os serviços estarão disponíveis para acesso na porta 8002, caso desejar essa porta poderá ser modificada no arquivo docker-compose.yml, as rotas de acesso aos serviços podem ser consultadas na tabela em anexo
-
-Caso deseje, a configuração com autenticação poderá ser ativada apenas por removendo os caracteres de comentarios do arquivo *kong.yml* dentro da pasta **kong-development**, porém será necessario atualizar o valor do kid no serviço de autenticação (consultar ***Identificador de Autenticação*** ).
+Caso deseje, a configuração com autenticação poderá ser ativada apenas removendo os caracteres de comentários do arquivo kong.yml dentro da pasta kong-development. Porém, será necessário atualizar o valor do "kid" no serviço de autenticação (consultar "Identificador de Autenticação").
 
 
 # Rotas de Acesso aos Serviços
