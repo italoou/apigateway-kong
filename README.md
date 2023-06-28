@@ -35,7 +35,7 @@ Após executar o comando, os serviços estarão disponíveis para acesso na port
 Caso deseje, a configuração com autenticação poderá ser ativada apenas removendo os caracteres de comentários do arquivo kong.yml dentro da pasta kong-development. Porém, será necessário atualizar o valor do "kid" no serviço de autenticação (consultar "Identificador de Autenticação").
 
 
-# Rotas de Acesso aos Serviços
+## Rotas de Acesso aos Serviços
 
 |Serviço|Rota|Porta Padrão|Diretório|Repositorio|
 |-------|----|------------|---------|-----------|
