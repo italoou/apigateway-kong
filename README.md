@@ -20,9 +20,9 @@ docker-compose up
 ```
 ### Desenvolvimento (configuração sem autenticação)
 
-No diretório apigateway-kong, encontra-se um arquivo YAML com um exemplo para o Docker Compose dos serviços, com a porta padrão definida para eles e a rede kong-net, necessária para que o Gateway redirecione para os serviços.
+No diretório apigateway-kong, encontra-se um arquivo YAML com um exemplo para o Docker Compose dos serviços, com a porta padrão definida para eles, o nome dos containers e a rede kong-net, necessária para que o Gateway redirecione para os serviços.
 
-No diretório kong-development, você encontrará o arquivo docker-compose.yml e o arquivo kong.yml. Nele está a configuração do API Gateway com uma configuração padrão para acessar os serviços. Mudanças nos nomes dos containers ou portas dos serviços precisarão ser atualizadas nesse arquivo.
+No diretório kong-development, você encontrará o arquivo docker-compose.yml e o arquivo kong.yml, arquivo de configuração do kong DBLess, nele está a configuração do API Gateway com uma configuração padrão para acessar os serviços. Mudanças nos nomes dos containers ou portas dos serviços precisarão ser atualizadas nesse arquivo.
 
 
 ```bash
@@ -33,20 +33,20 @@ docker-compose up
 
 Após executar o comando, os serviços estarão disponíveis para acesso na porta 8002. Caso deseje, essa porta poderá ser modificada no arquivo docker-compose.yml. As rotas de acesso aos serviços podem ser consultadas na tabela em anexo.
 
-Caso deseje, a configuração com autenticação poderá ser ativada apenas removendo os caracteres de comentários do arquivo kong.yml dentro da pasta kong-development. Porém, será necessário atualizar o valor do "kid" no serviço de autenticação (consultar "Identificador de Autenticação").
+Caso deseje, a configuração com autenticação poderá ser ativada apenas removendo os caracteres de comentários do arquivo kong.yml dentro da pasta kong-development e reiniciando o container. Entretanto, será necessário atualizar o valor do "kid" no serviço de autenticação (consultar "Identificador de Autenticação").
 
 
 ## Rotas de Acesso aos Serviços
 
-|Serviço|Rota|Porta Padrão|Diretório|Repositorio|
+|Serviço|Rota|Porta Padrão|Nome do Container Padrão|Repositorio|
 |-------|----|------------|---------|-----------|
-|Seguro|/seguro|7001|ms-insurance|
-|Emprestimo|/emprestimo|7002|ms-loan|
-|Financiamento|/financiamento|7003|ms-realstate-financing|
-|Autenticação|/autenticacao|7004|vasco-bank-autenticacao|
-|Usuario|/usuario|7005|user-service|
-|Investimento|/investimento|7006|investiment-service|
-|Conta|/conta|7007|vasco-bank-conta|
-|Cartão|/cartao|7008|vasco-bank-cartao|
-|Pagamento|/pagamento|7009|vasco-bank-pagamento|
+|Seguro|/seguro|7001|ms-insurance-api|
+|Emprestimo|/emprestimo|7002|ms-loan-api|
+|Financiamento|/financiamento|7003|ms-realstate-financing-api|
+|Autenticação|/autenticacao|7004|vasco-bank-autenticacao-api|
+|Usuario|/usuario|7005|user-service-api|
+|Investimento|/investimento|7006|investiment-service-api|
+|Conta|/conta|7007|vasco-bank-conta-api|
+|Cartão|/cartao|7008|vasco-bank-cartao-api|
+|Pagamento|/pagamento|7009|vasco-bank-pagamento-api|
 
