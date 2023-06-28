@@ -10,14 +10,15 @@ Github: @italoou
 
 Ao subir o Kong, será gerado um identificador para autenticação que pode ser obtido através da requisição para a rota da API, exposta na porta 8001: /consumers/loginserverissuer/jwt. O valor em data.key deve ser adicionado ao header do token JWT com sua chave "kid".
 
-## Produção (configuração com autenticação)
+## Instruções de Executar Aplicação
+### Produção (configuração com autenticação)
 
 ```bash
 cd apigateway-kong
 cd kong-production
 docker-compose up
 ```
-## Desenvolvimento (configuração sem autenticação)
+### Desenvolvimento (configuração sem autenticação)
 
 No diretório apigateway-kong, encontra-se um arquivo YAML com um exemplo para o Docker Compose dos serviços, com a porta padrão definida para eles e a rede kong-net, necessária para que o Gateway redirecione para os serviços.
 
