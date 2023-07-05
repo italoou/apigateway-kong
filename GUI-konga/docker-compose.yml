@@ -1,0 +1,56 @@
+version: "3.7"
+
+# networks:
+#   kong-net:
+#     external: true
+
+services:
+  # db:
+  #   container_name: db
+  #   image: postgres:9.5
+  #   environment:
+  #     POSTGRES_DB: kong
+  #     POSTGRES_USER: kong
+  #     POSTGRES_PASSWORD: kong
+  #   healthcheck:
+  #     test: ["CMD", "pg_isready", "-U", "kong"]
+  #     interval: 30s
+  #     timeout: 30s
+  #     retries: 3
+  #   restart: on-failure
+  #   deploy:
+  #     restart_policy:
+  #       condition: on-failure
+  #   stdin_open: true
+  #   tty: true
+  #   networks:
+  #     - kong-net
+   
+  # konga-prepare:
+  #   container_name: konga-prepare
+  #   image: pantsel/konga:latest
+  #   command: "-c prepare -a postgres -u postgresql://kong:kong@db:5432/konga_db"
+  #   networks:
+  #     - kong-net
+  #   restart: on-failure
+  #   depends_on:
+  #     - db
+
+  konga:
+    container_name: konga
+    image: pantsel/konga:latest
+    restart: always
+    # environment:
+    #   DB_ADAPTER: postgres
+    #   DB_HOST: db
+    #   DB_USER: kong
+    #   DB_PASSWORD: kong
+    #   TOKEN_SECRET: ahfdjgjgf79JKLFHJKh978953kgdfjkl
+    #   DB_DATABASE: konga_db
+    #   NODE_ENV: production
+    # depends_on:
+    #   - db
+    # networks:
+    #   - kong-net
+    ports:
+      - "1337:1337"

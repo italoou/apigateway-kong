@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-ingress
+  namespace: kong
+  annotations:
+    cert-manager.io/cluster-issuer: "kong-cluster-issuer"
+    nginx.ingress.kubernetes.io/proxy-body-size: "1024m"
+    external-dns.alpha.kubernetes.io/hostname: gateway.italolima.com
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: gateway.italolima.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kong-proxy
+            port:
+              number: 443
+  tls:
+  - hosts:
+    - gateway.italolima.com
+    secretName: kong-cert
