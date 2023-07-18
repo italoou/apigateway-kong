@@ -1,6 +1,7 @@
 _format_version: "2.1"
 
 services:
+#  Serviços da disciplina TÓPICOS ESPECIAIS EM SISTEMAS DE INFORMAÇÃO DE GESTÃO A (Microsserviços)
   - name: ms-insurance-api
     url: http://13.58.156.9/
     routes:
@@ -55,7 +56,27 @@ services:
   #     - name: pagamento-route
   #       paths:
   #         - /pagamento
+# Serviços da disciplina de TÓPICOS ESPECIAIS EM DESENVOLVIMENTO DE SOFTWARE 3 (Microsserviços)
+    - name: product-service
+      url: http://35.198.51.205:1111/
+      routes:
+        - name: product-route
+          paths:
+            - /produto
+    - name: order-service
+      url: http://35.198.33.181:3100/
+      routes:
+        - name: order-route
+          paths:
+            - /pedido
+    - name: payment-service
+      url: http://35.188.154.126/
+      routes:
+        - name: payment-route
+          paths:
+            - /pagamento
 
+#  Configurações para os serviços da disciplina TÓPICOS ESPECIAIS EM SISTEMAS DE INFORMAÇÃO DE GESTÃO A (Microsserviços)
 plugins:
   - name: jwt
     route: insurance-route

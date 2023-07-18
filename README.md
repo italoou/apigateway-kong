@@ -35,7 +35,29 @@ Após executar o comando, os serviços estarão disponíveis para acesso na port
 
 Caso deseje, a configuração com autenticação poderá ser ativada apenas removendo os caracteres de comentários do arquivo kong.yml dentro da pasta kong-development e reiniciando o container. Entretanto, será necessário atualizar o valor do "kid" no serviço de autenticação (consultar "Identificador de Autenticação").
 
+## Deploy Google Cloud Plataform (GCP)
 
+1. executar o arquivo deploy-kong-gateway-kubernetes.sh que se encontra na pasta k8s
+
+2. liberar acesso a porta do admin http no deployment proxy-kong
+
+    ```bash
+
+    0.0.0.0:8001 reuseport backlog=16384, 0.0.0.0:8444 http2 ssl reuseport backlog=16384
+
+    ```
+2. expor a porta do admin ao service kong-proxy
+
+    ```bash
+    - name: admin
+      protocol: TCP
+      port: 8001
+      targetPort: 8001
+    - name: admin-ssl
+      protocol: TCP
+      port: 8444
+      targetPort: 8444
+    ```
 ## Rotas de Acesso aos Serviços
 
 |Serviço|Rota|Porta Padrão|Nome do Container Padrão|Repositorio|
